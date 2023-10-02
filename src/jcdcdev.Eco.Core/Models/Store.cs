@@ -3,7 +3,7 @@ using jcdcdev.Eco.Core.Extensions;
 
 namespace jcdcdev.Eco.Core.Models;
 
-internal class Store
+public class Store
 {
     private Store(Guid id, List<TradeOffer> selling, List<TradeOffer> buying)
     {

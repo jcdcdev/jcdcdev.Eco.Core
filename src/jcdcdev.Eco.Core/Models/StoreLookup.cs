@@ -1,10 +1,10 @@
 namespace jcdcdev.Eco.Core.Models;
 
-internal class StoreCache
+public class StoreLookup
 {
-    public static StoreCache Create(Dictionary<Guid, Store> stores) => new(stores, DateTime.Now);
+    public static StoreLookup Create(Dictionary<Guid, Store> stores) => new(stores, DateTime.Now);
 
-    private StoreCache(Dictionary<Guid, Store> stores, DateTime updated)
+    private StoreLookup(Dictionary<Guid, Store> stores, DateTime updated)
     {
         Stores = stores;
         Updated = updated;

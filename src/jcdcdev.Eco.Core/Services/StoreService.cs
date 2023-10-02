@@ -1,15 +1,16 @@
 ﻿using Eco.Gameplay.Components;
 using Eco.Gameplay.Objects;
 using Eco.Shared.IoC;
+using jcdcdev.Eco.Core.Extensions;
 using jcdcdev.Eco.Core.Models;
 
-namespace jcdcdev.Eco.Core.Controllers;
+namespace jcdcdev.Eco.Core.Services;
 
-internal static class StoreController
+public static class StoreService
 {
-    private static StoreCache? _cache;
+    private static StoreLookup? _cache;
 
-    public static StoreCache Data => _cache ?? EnsureCache(); 
+    public static StoreLookup Data => _cache ?? EnsureCache();
 
     public static void Update()
     {
@@ -18,19 +19,20 @@ internal static class StoreController
         {
             return;
         }
+
         EnsureCache();
     }
 
-    private static StoreCache EnsureCache()
+    private static StoreLookup EnsureCache()
     {
         var stores = GetAllStores();
         var data = MapStores(stores);
-        var cache = StoreCache.Create(data);
+        var cache = StoreLookup.Create(data);
         _cache = cache;
         return cache;
     }
 
-    private static Dictionary<Guid, Store> MapStores(List<StoreComponent> stores)
+    private static Dictionary<Guid, Store> MapStores(IEnumerable<StoreComponent> stores)
     {
         var output = new Dictionary<Guid, Store>();
         foreach (var store in stores)
@@ -42,9 +44,5 @@ internal static class StoreController
         return output;
     }
 
-    private static List<StoreComponent> GetAllStores()
-    {
-        var stores = ServiceHolder<IWorldObjectManager>.Obj.All.Where(y => y.HasComponent<StoreComponent>());
-        return stores.Select(x => x.GetComponent<StoreComponent>()).ToList();
-    }
+    private static IEnumerable<StoreComponent> GetAllStores() => ServiceHolder<IWorldObjectManager>.Obj.GetStores();
 }
