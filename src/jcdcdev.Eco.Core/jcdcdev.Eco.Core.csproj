@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Product>jcdcdev.Eco.Core</Product>
+        <PackageId>jcdcdev.Eco.Core</PackageId>
+        <Title>jcdcdev.Eco.Core</Title>
+        <Description>Core functionality used by my Eco mods</Description>
+        <PackageTags>Eco</PackageTags>
+        <Authors>James Carter</Authors>
+        <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © James Carter</Copyright>
+        <PackageProjectUrl>https://github.com/jcdcdev/jcdcdev.Eco.Core</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/jcdcdev/jcdcdev.Eco.Core</RepositoryUrl>
+        <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>icon.png</PackageIcon>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ElixrMods.Framework" Version="3.4.6"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\..\docs\README_nuget.md" Pack="true" PackagePath=""/>
+        <None Include="icon.png" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+</Project>
