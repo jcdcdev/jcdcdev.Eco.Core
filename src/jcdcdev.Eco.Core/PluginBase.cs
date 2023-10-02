@@ -5,8 +5,13 @@ using Eco.Core.Utils;
 using Eco.Shared.Localization;
 using Eco.Shared.Utils;
 using jcdcdev.Eco.Core.Extensions;
+using jcdcdev.Eco.Core.Models;
 
 namespace jcdcdev.Eco.Core;
+
+public abstract class PluginBase : PluginBase<EmptyConfig>
+{
+}
 
 public abstract class PluginBase<TConfig> :
     IModKitPlugin,
@@ -48,11 +53,11 @@ public abstract class PluginBase<TConfig> :
     public void Initialize(TimedTask timer)
     {
         Log.WriteLine(new LocString($"Initializing {ModName} - {ModVersion}"));
-        
+
         Active = true;
         ConfigBase<TConfig>.Initialize();
         PluginManager.Controller.RunIfOrWhenInited((Action)(() => { }));
-        
+
         InitializeMod(timer);
     }
 
