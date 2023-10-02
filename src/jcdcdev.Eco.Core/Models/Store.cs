@@ -17,8 +17,8 @@ public class Store
     public Guid Id { get; }
     public List<TradeOffer> Selling { get; }
     public List<TradeOffer> Buying { get; }
-    public float? AvgCostPerThousandCalories { get; }
-    public float? AvgCostPerThousandCaloriesInStock { get; }
+    public float AvgCostPerThousandCalories { get; }
+    public float AvgCostPerThousandCaloriesInStock { get; }
 
     public static Store CreateFromStoreComponent(StoreComponent store)
     {

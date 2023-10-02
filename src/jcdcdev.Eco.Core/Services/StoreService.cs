@@ -8,9 +8,7 @@ namespace jcdcdev.Eco.Core.Services;
 
 public static class StoreService
 {
-    private static StoreLookup? _cache;
-
-    public static StoreLookup Data => _cache ?? EnsureCache();
+    public static StoreLookup Data { get; private set; } = StoreLookup.Empty();
 
     public static void Update()
     {
@@ -20,16 +18,9 @@ public static class StoreService
             return;
         }
 
-        EnsureCache();
-    }
-
-    private static StoreLookup EnsureCache()
-    {
-        var stores = GetAllStores();
+        var stores = ServiceHolder<IWorldObjectManager>.Obj.GetStores();
         var data = MapStores(stores);
-        var cache = StoreLookup.Create(data);
-        _cache = cache;
-        return cache;
+        Data = StoreLookup.Create(data);
     }
 
     private static Dictionary<Guid, Store> MapStores(IEnumerable<StoreComponent> stores)
@@ -43,6 +34,4 @@ public static class StoreService
 
         return output;
     }
-
-    private static IEnumerable<StoreComponent> GetAllStores() => ServiceHolder<IWorldObjectManager>.Obj.GetStores();
 }

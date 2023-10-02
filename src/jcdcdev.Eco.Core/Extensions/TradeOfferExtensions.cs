@@ -1,5 +1,6 @@
 ﻿using Eco.Gameplay.Components;
 using Eco.Gameplay.Items;
+using Eco.Shared.Localization;
 using Eco.Shared.Utils;
 
 namespace jcdcdev.Eco.Core.Extensions;
@@ -32,6 +33,9 @@ public static class TradeOfferExtensions
                 {
                     continue;
                 }
+
+                costs.Add(item, offer.Average(x => x.Price));
+                continue;
             }
 
             if (offer.Sum(x => x.Price) == 0)
@@ -46,8 +50,6 @@ public static class TradeOfferExtensions
             var costPerCalorie = avgPrice / foodItem.Calories;
             var costPerThousand = costPerCalorie * 1000;
 
-            Log.Debug(
-                $"{foodItem.Name} Quantity: {totalQuantity} Cost: {totalPrice} Avg Price: {avgPrice} Cost Per 1000 Cal: {costPerThousand}");
             costs.Add(item, costPerThousand);
         }
 
