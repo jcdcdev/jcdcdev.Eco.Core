@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT_NAME: jcdcdev.Eco.Core
-      PROJECT_PATH: ./src/jcdcdev.Eco.Core.csproj
+      PROJECT_PATH: ./src/jcdcdev.Eco.Core/jcdcdev.Eco.Core.csproj
       BUILD_OUTPUT: ./build-output
       MOD_OUTPUT: ./build-assets/Mods/jcdcdev.Eco.Core
       ASSET_NAME: jcdcdev.Eco.Core-dev-${{ github.sha }}

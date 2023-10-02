@@ -32,7 +32,7 @@ jobs:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
       ASSET_NAME: jcdcdev.Eco.Core-${{ needs.determine-version.outputs.semVer }}
       PROJECT_NAME: jcdcdev.Eco.Core
-      PROJECT_PATH: ./src/jcdcdev.Eco.Core.csproj
+      PROJECT_PATH: ./src/jcdcdev.Eco.Core/jcdcdev.Eco.Core.csproj
       BUILD_OUTPUT: ./build-output
       MOD_OUTPUT: ./build-assets/Mods/jcdcdev.Eco.Core
       ARTIFACT_OUTPUT: ./build-assets
