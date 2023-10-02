@@ -5,8 +5,6 @@
             <ModsPath>$(ServerPath)\Mods\UserCode</ModsPath>
             <ModOutputPath>$(ModsPath)\$(ProjectName)</ModOutputPath>
         </PropertyGroup>
-        <Message Text="Copying $(ProjectName).dll to $(ModOutputPath)" Importance="Low"/>
         <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="$(ModOutputPath)"/>
-        <Message Text="Copied $(ProjectName).dll to $(ModOutputPath)" Importance="Low"/>
     </Target>
 </Project>

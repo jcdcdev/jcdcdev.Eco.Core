@@ -20,8 +20,8 @@ public abstract class PluginBase<TConfig> :
     IDisplayablePlugin,
     IThreadedPlugin where TConfig : new()
 {
-    private static string ModVersion => ModKitExtensions.Version;
-    private static string ModName => ModKitExtensions.Name;
+    private string ModName => this.GetModName();
+    private string ModVersion => this.GetModVersion();
 
     protected bool Active;
 
@@ -55,12 +55,12 @@ public abstract class PluginBase<TConfig> :
         Log.WriteLine(new LocString($"Initializing {ModName} - {ModVersion}"));
 
         Active = true;
-        ConfigBase<TConfig>.Initialize();
+        ConfigBase<TConfig>.Initialize(ModName);
         PluginManager.Controller.RunIfOrWhenInited((Action)(() => { }));
 
         InitializeMod(timer);
     }
-
+    
     public async Task ShutdownAsync()
     {
         Active = false;
