@@ -1,13 +1,16 @@
 name: Build mod
+run-name: >
+  build ${{github.repository}} #${{ github.run_number }}
 
 on:
   pull_request:
-    branches: "*"
+    branches:
+      - "*"
   workflow_dispatch:
 
 jobs:
   build:
-
+    name: build
     runs-on: ubuntu-latest
     env:
       PROJECT_NAME: jcdcdev.Eco.Core
