@@ -14,6 +14,6 @@ public class StoreLookup
     public DateTime Updated { get; }
     public Dictionary<Guid, Store> Stores { get; }
     public float? AvgCostPerThousandCalories => Stores.Sum(x => x.Value.AvgCostPerThousandCalories);
-    public float? AvgCostPerThousandCaloriesInStock => Stores.Sum(x => x.Value.AvgCostPerThousandCalories);
+    public float? AvgCostPerThousandCaloriesInStock => Stores.Sum(x => x.Value.AvgCostPerThousandCaloriesInStock);
     public Store? Get(Guid id) => Stores.TryGetValue(id, out var store) ? store : null;
 }

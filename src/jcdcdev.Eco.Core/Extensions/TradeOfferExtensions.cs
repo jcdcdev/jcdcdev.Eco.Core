@@ -27,14 +27,13 @@ public static class TradeOfferExtensions
                 continue;
             }
 
-            if (offer.Sum(x => x.Stack.Quantity) == 0)
+            if (offer.All(x => x.Stack.Quantity == 0))
             {
-                if (!includeOutOfStock)
+                if (includeOutOfStock)
                 {
-                    continue;
+                    costs.Add(item, offer.Average(x => x.Price));
                 }
 
-                costs.Add(item, offer.Average(x => x.Price));
                 continue;
             }
 
