@@ -12,7 +12,7 @@ public static class StoreService
 
     public static void Update()
     {
-        var seconds = TimeSpan.FromSeconds(Math.Min(CorePlugin.Config.StoreUpdateFrequency, 5));
+        var seconds = TimeSpan.FromSeconds(Math.Max(CorePlugin.Config.StoreUpdateFrequency, 5));
         if (Data.Updated >= DateTime.UtcNow - seconds)
         {
             return;
