@@ -4,8 +4,7 @@ namespace jcdcdev.Eco.Core.Extensions;
 
 public static class ModKitExtensions
 {
-    private static AssemblyName AssemblyName(Type type) =>
-        Assembly.GetAssembly(type)?.GetName() ?? throw new InvalidOperationException();
+    private static AssemblyName AssemblyName(Type type) => Assembly.GetAssembly(type)?.GetName() ?? throw new InvalidOperationException();
 
     public static string GetModVersion<TConfig>(this PluginBase<TConfig> plugin) where TConfig : new()
     {

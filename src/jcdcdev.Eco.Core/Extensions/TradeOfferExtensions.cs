@@ -1,7 +1,5 @@
 ﻿using Eco.Gameplay.Components;
 using Eco.Gameplay.Items;
-using Eco.Shared.Localization;
-using Eco.Shared.Utils;
 
 namespace jcdcdev.Eco.Core.Extensions;
 

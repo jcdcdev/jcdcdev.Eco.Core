@@ -15,11 +15,11 @@ public class CorePlugin : PluginBase<CoreConfig>
             Thread.Sleep(500);
         }
     }
-    
+
     protected override void BuildStatusText(LocStringBuilder sb)
     {
-        sb.AppendLineNTStr($"Updated :{StoreService.Data.Updated.ToString(CultureInfo.InvariantCulture)}");
-        sb.AppendLineNTStr($"Store Count :{StoreService.Data.Stores.Count}");
+        sb.AppendLineNTStr($"Updated: {StoreService.Data.Updated.ToString(CultureInfo.InvariantCulture)}");
+        sb.AppendLineNTStr($"Store Count: {StoreService.Data.Stores.Count}");
         base.BuildStatusText(sb);
     }
 }

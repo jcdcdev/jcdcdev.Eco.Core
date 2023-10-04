@@ -1,5 +1,3 @@
 ﻿namespace jcdcdev.Eco.Core.Models;
 
-public class EmptyConfig
-{
-}
+public class EmptyConfig { }
