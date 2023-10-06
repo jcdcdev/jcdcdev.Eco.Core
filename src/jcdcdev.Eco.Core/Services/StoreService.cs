@@ -10,9 +10,9 @@ public static class StoreService
 {
     public static StoreLookup Data { get; private set; } = StoreLookup.Empty();
 
-    public static void Update()
+    public static void Update(uint cutoff)
     {
-        var seconds = TimeSpan.FromSeconds(Math.Max(CorePlugin.Config.StoreUpdateFrequency, 5));
+        var seconds = TimeSpan.FromSeconds(Math.Max(cutoff, 5));
         if (Data.Updated >= DateTime.UtcNow - seconds)
         {
             return;

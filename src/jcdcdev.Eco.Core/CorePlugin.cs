@@ -11,7 +11,7 @@ public class CorePlugin : PluginBase<CoreConfig>
     {
         while (Active)
         {
-            StoreService.Update();
+            StoreService.Update(Config.StoreUpdateFrequency);
             Thread.Sleep(500);
         }
     }

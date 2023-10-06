@@ -7,4 +7,11 @@
         </PropertyGroup>
         <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="$(ModOutputPath)"/>
     </Target>
+
+    <Target Name="Push" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug'">
+        <PropertyGroup>
+            <PackagesToPush>$(OutputPath)..\$(ProjectName).$(PackageVersion).nupkg</PackagesToPush>
+        </PropertyGroup>
+        <Exec Command="dotnet nuget push $(PackagesToPush) -s http://localhost:8089/v3/index.json"/>
+    </Target>
 </Project>

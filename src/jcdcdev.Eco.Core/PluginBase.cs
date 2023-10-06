@@ -1,9 +1,12 @@
 ﻿using Eco.Core.Plugins;
 using Eco.Core.Plugins.Interfaces;
 using Eco.Core.Utils;
+using Eco.Server;
 using Eco.Shared.Localization;
+using Eco.WebServer.Web.Controllers;
 using jcdcdev.Eco.Core.Extensions;
 using jcdcdev.Eco.Core.Models;
+using PluginManager = Eco.Core.PluginManager;
 
 namespace jcdcdev.Eco.Core;
 
@@ -16,28 +19,47 @@ public abstract class PluginBase<TConfig> :
     IDisplayablePlugin,
     IThreadedPlugin where TConfig : new()
 {
-    protected bool Active;
-    private string ModName => this.GetModName();
-    private string ConfigFileName => this.GetModName().EnsureEndsWith(".eco");
-    private string ModVersion => this.GetModVersion();
-    public static TConfig Config => ConfigBase<TConfig>.Config;
+    protected PluginBase()
+    {
+        ModName = GetType().AssemblyName();
+        ModVersion = GetType().SemVer();
+        _pluginConfig = new PluginConfig<TConfig>(ModName);
+        PluginConfig = _pluginConfig;
+        Config = _pluginConfig.Config;
+    }
 
-    public IPluginConfig PluginConfig => ConfigBase<TConfig>.PluginConfig;
+    public string ModVersion { get; }
+
+    public TConfig Config { get; }
+
+    public string ModName { get; }
+
+    protected bool Active;
+    private readonly PluginConfig<TConfig> _pluginConfig;
+    public IPluginConfig PluginConfig { get; }
 
     public object? GetEditObject() => Config;
 
     public ThreadSafeAction<object, string>? ParamChanged { get; set; }
 
-    public void OnEditObjectChanged(object o, string param) => ConfigBase<TConfig>.OnConfigEntryChanged(o, param, ConfigFileName);
+    public void OnEditObjectChanged(object o, string param)
+    {
+        _pluginConfig.BuildConfigProperties();
+        OnConfigChanged(param);
+    }
+
+    protected virtual void OnConfigChanged(string propertyChanged) { }
 
     public string GetDisplayText() => GetStatus();
 
     public void Initialize(TimedTask timer)
     {
         Active = true;
-        ConfigBase<TConfig>.Initialize(ModName);
         InitializeMod(timer);
+        PluginManager.Controller.RunIfOrWhenInited(PluginsInitialized);
     }
+
+    protected virtual void PluginsInitialized() { }
 
     public string GetStatus()
     {

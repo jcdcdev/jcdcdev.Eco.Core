@@ -19,6 +19,12 @@
         <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <PackageVersion>$([System.DateTime]::UtcNow.ToString(`yyyy.MMdd.HHmm`))</PackageVersion>
+        <Version>$(PackageVersion)</Version>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="ElixrMods.Framework" Version="3.4.6"/>
     </ItemGroup>
