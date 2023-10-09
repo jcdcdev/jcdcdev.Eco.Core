@@ -4,11 +4,9 @@ namespace jcdcdev.Eco.Core.Extensions;
 
 public static class Logger
 {
-    private static readonly object Lock = new();
+    public static readonly object Lock = new();
 
-    public static void Write(ColorLogBuilder builder) => WriteLine(builder.Build());
-
-    public static void WriteLine(string message, ConsoleColor color = ConsoleColor.Gray)
+    public static void WriteLine(string message, ConsoleColor color = ConsoleColor.White)
     {
         lock (Lock)
         {
@@ -24,7 +22,6 @@ public static class Logger
         {
             WriteTimeStamp();
             foreach (var kvp in parts) Write(kvp.Key, kvp.Value);
-
             WriteNewLine();
         }
     }
@@ -50,7 +47,7 @@ public static class Logger
         Write($"[{date}] ", ConsoleColor.DarkGreen);
     }
 
-    private static void Write(string message, ConsoleColor color = ConsoleColor.Gray)
+    private static void Write(string message, ConsoleColor color = ConsoleColor.White)
     {
         if (Console.BackgroundColor != color)
         {
@@ -59,9 +56,51 @@ public static class Logger
 
         Console.Write(Localizer.DoStr(message));
 
-        if (Console.BackgroundColor != ConsoleColor.Gray)
+        if (Console.BackgroundColor != ConsoleColor.White)
         {
             Console.ResetColor();
+        }
+    }
+
+    public static void Log(this ColorLogBuilder builder, string? prefix = null, ConsoleColor color = ConsoleColor.DarkCyan)
+    {
+        var bvalu = builder.Build();
+        var signleLineOnly = bvalu.All(x => !x.NewLine);
+        lock (Lock)
+        {
+            if (signleLineOnly)
+            {
+                WriteTimeStamp();
+                if (prefix.IsNotNullOrWhitespace())
+                {
+                    Write($"[{prefix}] ", color);
+                }
+            }
+
+            foreach (var token in bvalu)
+            {
+                if (token.NewLine)
+                {
+                    WriteTimeStamp();
+                    if (prefix.IsNotNullOrWhitespace())
+                    {
+                        Write($"[{prefix}] ", color);
+                    }
+                }
+
+                Write($"{token.Text}", token.Color);
+                if (token.NewLine)
+                {
+                    WriteNewLine();
+                }
+            }
+
+            if (signleLineOnly)
+            {
+                WriteNewLine();
+            }
+
+            builder.Clear();
         }
     }
 }
