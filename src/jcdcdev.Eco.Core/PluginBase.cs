@@ -1,58 +1,64 @@
 ﻿using Eco.Core.Plugins;
 using Eco.Core.Plugins.Interfaces;
 using Eco.Core.Utils;
-using Eco.Server;
 using Eco.Shared.Localization;
-using Eco.WebServer.Web.Controllers;
 using jcdcdev.Eco.Core.Extensions;
-using jcdcdev.Eco.Core.Models;
 using PluginManager = Eco.Core.PluginManager;
 
 namespace jcdcdev.Eco.Core;
 
-public abstract class PluginBase : PluginBase<EmptyConfig> { }
+public abstract class PluginBase<TConfig> : PluginBase,
+    IConfigurablePlugin where TConfig : new()
+{
+    private string ConfigFileName => ModName.EnsureEndsWith(".eco");
 
-public abstract class PluginBase<TConfig> :
+    public override void Initialize(TimedTask timer)
+    {
+        base.Initialize(timer);
+        _pluginConfig.SaveAsAsync(ConfigFileName).GetAwaiter().GetResult();
+    }
+
+    public TConfig Config { get; }
+    private readonly PluginConfig<TConfig> _pluginConfig;
+    public object? GetEditObject() => Config;
+    public IPluginConfig PluginConfig { get; }
+
+
+    public ThreadSafeAction<object, string>? ParamChanged { get; set; }
+
+    public void OnEditObjectChanged(object o, string param) => OnConfigChanged(param);
+
+    protected virtual void OnConfigChanged(string propertyChanged) { }
+
+    protected PluginBase()
+    {
+        _pluginConfig = new PluginConfig<TConfig>(ModName);
+        PluginConfig = _pluginConfig;
+        Config = _pluginConfig.Config;
+    }
+}
+
+public abstract class PluginBase :
     IModKitPlugin,
     IInitializablePlugin,
-    IConfigurablePlugin,
     IDisplayablePlugin,
-    IThreadedPlugin where TConfig : new()
+    IThreadedPlugin
 {
     protected PluginBase()
     {
         ModName = GetType().AssemblyName();
         ModVersion = GetType().SemVer();
-        _pluginConfig = new PluginConfig<TConfig>(ModName);
-        PluginConfig = _pluginConfig;
-        Config = _pluginConfig.Config;
     }
 
     public string ModVersion { get; }
 
-    public TConfig Config { get; }
-
     public string ModName { get; }
 
     protected bool Active;
-    private readonly PluginConfig<TConfig> _pluginConfig;
-    public IPluginConfig PluginConfig { get; }
-
-    public object? GetEditObject() => Config;
-
-    public ThreadSafeAction<object, string>? ParamChanged { get; set; }
-
-    public void OnEditObjectChanged(object o, string param)
-    {
-        _pluginConfig.BuildConfigProperties();
-        OnConfigChanged(param);
-    }
-
-    protected virtual void OnConfigChanged(string propertyChanged) { }
-
+    
     public string GetDisplayText() => GetStatus();
 
-    public void Initialize(TimedTask timer)
+    public virtual void Initialize(TimedTask timer)
     {
         Active = true;
         InitializeMod(timer);
@@ -71,7 +77,7 @@ public abstract class PluginBase<TConfig> :
         return sb.ToString() ?? string.Empty;
     }
 
-    public string GetCategory() => Localizer.DoStr("Mods");
+    public string GetCategory() => Localizer.DoStr("jcdcdev.Eco");
 
     public async Task ShutdownAsync()
     {
@@ -82,10 +88,9 @@ public abstract class PluginBase<TConfig> :
     public void Run()
     {
         var builder = ColorLogBuilder.Create();
-        builder.Append($"{ModName}", ConsoleColor.DarkCyan);
-        builder.Append(" - ");
-        builder.Append($"{ModVersion}", ConsoleColor.DarkYellow);
-        Logger.Write(builder);
+        builder.Append("- ", ConsoleColor.DarkGray);
+        builder.Append($"({ModVersion})", ConsoleColor.DarkYellow);
+        builder.Log(ModName);
         RunMod();
     }
 
@@ -93,7 +98,7 @@ public abstract class PluginBase<TConfig> :
 
     protected virtual Task ShutdownMod() => Task.CompletedTask;
 
-    public override string ToString() => ModName;
+    public override string ToString() => ModName.Split(".").LastOrDefault() ?? ModName;
 
     protected virtual void RunMod() { }
 

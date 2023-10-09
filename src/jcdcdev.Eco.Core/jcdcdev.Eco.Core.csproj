@@ -20,7 +20,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-        <PackageVersion>$([System.DateTime]::UtcNow.ToString(`yyyy.MMdd.HHmm`))</PackageVersion>
+        <PackageVersion>$([System.DateTime]::UtcNow.ToString(`yyyy.MMdd.Hmm`))</PackageVersion>
         <Version>$(PackageVersion)</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
