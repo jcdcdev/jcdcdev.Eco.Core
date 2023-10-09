@@ -3,6 +3,7 @@ using Eco.Core.Plugins.Interfaces;
 using Eco.Core.Utils;
 using Eco.Shared.Localization;
 using jcdcdev.Eco.Core.Extensions;
+using jcdcdev.Eco.Core.Logging;
 using PluginManager = Eco.Core.PluginManager;
 
 namespace jcdcdev.Eco.Core;

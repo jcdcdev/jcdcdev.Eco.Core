@@ -1,19 +1,10 @@
-﻿using System.Collections;
-using System.Runtime.InteropServices;
-
-namespace jcdcdev.Eco.Core.Extensions;
+﻿namespace jcdcdev.Eco.Core.Logging;
 
 public class ColorLogBuilder
 {
     private readonly List<ColorLogToken> _parts = new();
-    private readonly KeyValuePair<string, ConsoleColor> _prefix;
-    private readonly bool _hasPrefix;
 
-
-    private ColorLogBuilder()
-    {
-        // Add(Environment.NewLine, ConsoleColor.White);
-    }
+    private ColorLogBuilder() { }
 
     public ColorLogBuilder Append(string text, ConsoleColor color = ConsoleColor.White)
     {
@@ -43,11 +34,4 @@ public class ColorLogBuilder
 
     public IEnumerable<ColorLogToken> Build() => _parts;
     public void Clear() => _parts.Clear();
-}
-
-public class ColorLogToken
-{
-    public string Text { get; set; }
-    public ConsoleColor Color { get; set; }
-    public bool NewLine { get; set; }
 }

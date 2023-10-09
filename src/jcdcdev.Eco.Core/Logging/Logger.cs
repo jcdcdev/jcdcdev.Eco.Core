@@ -1,6 +1,7 @@
 ﻿using Eco.Shared.Localization;
+using jcdcdev.Eco.Core.Extensions;
 
-namespace jcdcdev.Eco.Core.Extensions;
+namespace jcdcdev.Eco.Core.Logging;
 
 public static class Logger
 {
