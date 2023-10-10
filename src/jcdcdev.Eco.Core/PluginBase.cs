@@ -1,26 +1,28 @@
-﻿using Eco.Core.Plugins;
+﻿using Eco.Core;
+using Eco.Core.Plugins;
 using Eco.Core.Plugins.Interfaces;
 using Eco.Core.Utils;
 using Eco.Shared.Localization;
 using jcdcdev.Eco.Core.Extensions;
 using jcdcdev.Eco.Core.Logging;
-using PluginManager = Eco.Core.PluginManager;
 
 namespace jcdcdev.Eco.Core;
 
 public abstract class PluginBase<TConfig> : PluginBase,
     IConfigurablePlugin where TConfig : new()
 {
-    private string ConfigFileName => ModName.EnsureEndsWith(".eco");
+    private readonly PluginConfig<TConfig> _pluginConfig;
 
-    public override void Initialize(TimedTask timer)
+    protected PluginBase()
     {
-        base.Initialize(timer);
-        _pluginConfig.SaveAsAsync(ConfigFileName).GetAwaiter().GetResult();
+        _pluginConfig = new PluginConfig<TConfig>(ModName);
+        PluginConfig = _pluginConfig;
+        Config = _pluginConfig.Config;
     }
 
+    private string ConfigFileName => ModName.EnsureEndsWith(".eco");
+
     public TConfig Config { get; }
-    private readonly PluginConfig<TConfig> _pluginConfig;
     public object? GetEditObject() => Config;
     public IPluginConfig PluginConfig { get; }
 
@@ -29,14 +31,13 @@ public abstract class PluginBase<TConfig> : PluginBase,
 
     public void OnEditObjectChanged(object o, string param) => OnConfigChanged(param);
 
-    protected virtual void OnConfigChanged(string propertyChanged) { }
-
-    protected PluginBase()
+    public override void Initialize(TimedTask timer)
     {
-        _pluginConfig = new PluginConfig<TConfig>(ModName);
-        PluginConfig = _pluginConfig;
-        Config = _pluginConfig.Config;
+        base.Initialize(timer);
+        _pluginConfig.SaveAsAsync(ConfigFileName).GetAwaiter().GetResult();
     }
+
+    protected virtual void OnConfigChanged(string propertyChanged) { }
 }
 
 public abstract class PluginBase :
@@ -45,6 +46,8 @@ public abstract class PluginBase :
     IDisplayablePlugin,
     IThreadedPlugin
 {
+    protected bool Active;
+
     protected PluginBase()
     {
         ModName = GetType().AssemblyName();
@@ -55,8 +58,6 @@ public abstract class PluginBase :
 
     public string ModName { get; }
 
-    protected bool Active;
-    
     public string GetDisplayText() => GetStatus();
 
     public virtual void Initialize(TimedTask timer)
@@ -65,8 +66,6 @@ public abstract class PluginBase :
         InitializeMod(timer);
         PluginManager.Controller.RunIfOrWhenInited(PluginsInitialized);
     }
-
-    protected virtual void PluginsInitialized() { }
 
     public string GetStatus()
     {
@@ -94,6 +93,8 @@ public abstract class PluginBase :
         builder.Log(ModName);
         RunMod();
     }
+
+    protected virtual void PluginsInitialized() { }
 
     protected virtual void BuildStatusText(LocStringBuilder sb) { }
 
