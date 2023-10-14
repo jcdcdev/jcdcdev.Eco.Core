@@ -1,0 +1,31 @@
+name: Sync All
+on:
+    workflow_dispatch:
+jobs:
+  sync-all:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PAT }}
+          repository: 'jcdcdev/jcdcdev.Eco.Core'
+          event-type: sync-readme
+      - name: Sync
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PAT }}
+          repository: 'jcdcdev/jcdcdev.Eco.SeedStorage'
+          event-type: sync-readme
+      - name: Sync
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PAT }}
+          repository: 'jcdcdev/jcdcdev.Eco.Signs'
+          event-type: sync-readme
+      - name: Sync
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PAT }}
+          repository: 'jcdcdev/jcdcdev.Eco.ShelfLife'
+          event-type: sync-readme
