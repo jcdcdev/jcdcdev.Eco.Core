@@ -7,3 +7,9 @@ This is a core mod used for my other mods:
 - [jcdcdev.Eco.ShelfLife](https://mod.io/g/eco/m/jcdcdev.Eco.Shelflife)
 - [jcdcdev.Eco.Signs](https://mod.io/g/eco/m/jcdcdev.Eco.Signs)
 - [jcdcdev.Eco.SeedStorage](https://mod.io/g/eco/m/jjcdcdevecoseedstorage)
+
+## Install Steps
+- Download the latest version from https://mod.io/g/eco/m/jcdcdevecocore
+- Extract the zip
+- Copy the extracted Mods folder into your Server's Mods folder
+- Start the server
