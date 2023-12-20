@@ -1,4 +1,4 @@
-﻿using Eco.Gameplay.Components;
+﻿using Eco.Gameplay.Components.Store;
 using Eco.Gameplay.Objects;
 
 namespace jcdcdev.Eco.Core.Extensions;

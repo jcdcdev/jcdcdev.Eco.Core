@@ -1,4 +1,5 @@
 using Eco.Gameplay.Components;
+using Eco.Gameplay.Components.Store;
 using jcdcdev.Eco.Core.Extensions;
 
 namespace jcdcdev.Eco.Core.Models;
