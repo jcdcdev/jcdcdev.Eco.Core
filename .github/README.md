@@ -1,6 +1,6 @@
 ## jcdcdev.Eco.Core
 
-![Eco Version](https://badgen.net/static/Eco/v0.10.0) [![Latest version on Github](https://badgen.net/github/tag/jcdcdev/jcdcdev.Eco.Core?label=Mod)](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/latest) [![Commits](https://badgen.net/github/commits/jcdcdev/jcdcdev.Eco.Core)](https://github.com/jcdcdev/jcdcdev.Eco.Core/commits/main)
+![Eco Version](https://badgen.net/static/Eco/v0.10.1+) [![Latest version on Github](https://badgen.net/github/tag/jcdcdev/jcdcdev.Eco.Core?label=Mod)](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/latest) [![Commits](https://badgen.net/github/commits/jcdcdev/jcdcdev.Eco.Core)](https://github.com/jcdcdev/jcdcdev.Eco.Core/commits/main)
 
 This is a core mod used for my other mods:
 
