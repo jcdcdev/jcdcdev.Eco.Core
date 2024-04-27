@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using Eco.Shared.Localization;
-using Eco.Shared.Utils;
 using jcdcdev.Eco.Core.Models;
 using jcdcdev.Eco.Core.Services;
 
