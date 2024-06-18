@@ -7,4 +7,3 @@ updates:
       time: "04:00"
     allow:
       - dependency-type: "all"
-        versions: ["prerelease"]
