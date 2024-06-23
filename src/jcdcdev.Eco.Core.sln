@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{7685A80B
 		..\.github\README.md = ..\.github\README.md
 		..\docs\README_nuget.md = ..\docs\README_nuget.md
 		..\.github\dependabot.yml = ..\.github\dependabot.yml
+		update-nuget-package.ps1 = update-nuget-package.ps1
+		..\.github\workflows\update-eco-package.yml = ..\.github\workflows\update-eco-package.yml
 	EndProjectSection
 EndProject
 Global

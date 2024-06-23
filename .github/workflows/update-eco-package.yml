@@ -1,0 +1,39 @@
+name: 'Update Eco NuGet Package'
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0,12 * * *'
+jobs:
+  sync-eco-package:
+    runs-on: ubuntu-latest
+    name: 'Sync mod.io README and Images'
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      packageId: 'Eco.ReferenceAssemblies'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Execute ./src/update-nuget-package.ps1 with parameters and consume output
+        id: sync-eco-package
+        shell: pwsh
+        run: |
+          $result = ./src/update-nuget-package.ps1 -projectFilePath "./jcdcdev.Eco.Core/jcdcdev.Eco.Core.csproj" -packageId $env:packageId
+          Write-Host "$result"
+          Write-Output "updated=$($result.Updated)" >> $env:GITHUB_OUTPUT
+          Write-Output "version=$($result.UpdatedVersion)" >> $env:GITHUB_OUTPUT
+# - name: Make Pull Request
+#   if: steps.sync-eco-package.outputs.updated == 'true'
+#   uses: peter-evans/create-pull-request@v3
+#   with:
+#     token: ${{ secrets.GITHUB_TOKEN }}
+#     commit-message: "feature: Support Eco $env:Version"
+#     title: "Update $env:packageId to $env:Version"
+#     body: "This PR updates the $env:packageId NuGet package to version $env:Version."
+#     branch: "update-$env:packageId-to-$env:Version"
+#     labels: "automated"
+#     reviewers: "jcdcdev"
+#     assignees: "jcdcdev"
