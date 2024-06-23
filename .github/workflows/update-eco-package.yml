@@ -1,4 +1,4 @@
-name: 'Update Eco NuGet Package'
+name: '🔄 Update Eco NuGet Package'
 on:
   workflow_dispatch:
   schedule:
@@ -6,38 +6,37 @@ on:
 jobs:
   sync-eco-package:
     runs-on: ubuntu-latest
-    name: 'Update Eco NuGet Package'
+    name: '🔧 Sync Eco NuGet Package'
     permissions:
       contents: write
       pull-requests: write
     env:
       packageId: 'Eco.ReferenceAssemblies'
     steps:
-      - name: Checkout code
+      - name: 📋 Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Execute script
+      - name: 🚀 Execute script
         id: sync-eco-package
         shell: pwsh
         run: |
           Push-Location -Path ./src
 
           $result = ./update-nuget-package.ps1 -projectFilePath "./jcdcdev.Eco.Core/jcdcdev.Eco.Core.csproj" -packageId $env:packageId
-          Write-Host "$result"
           Write-Output "updated=$($result.Updated)" >> $env:GITHUB_OUTPUT
-          Write-Output "version=$($result.UpdatedVersion)" >> $env:GITHUB_OUTPUT
+          Write-Output "version=$($result.TargetVersion)" >> $env:GITHUB_OUTPUT
 
           Pop-Location
-# - name: Make Pull Request
-#   if: steps.sync-eco-package.outputs.updated == 'true'
-#   uses: peter-evans/create-pull-request@v3
-#   with:
-#     token: ${{ secrets.GITHUB_TOKEN }}
-#     commit-message: "feature: Support Eco $env:Version"
-#     title: "Update $env:packageId to $env:Version"
-#     body: "This PR updates the $env:packageId NuGet package to version $env:Version."
-#     branch: "update-$env:packageId-to-$env:Version"
-#     labels: "automated"
-#     reviewers: "jcdcdev"
-#     assignees: "jcdcdev"
+      - name: 🤖 Make Pull Request
+        if: steps.sync-eco-package.outputs.updated == 'true'
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feature: Support Eco $env:Version"
+          title: "Update $env:packageId to $env:Version"
+          body: "This PR updates the $env:packageId NuGet package to version $env:Version."
+          branch: "update-$env:packageId-to-$env:Version"
+          labels: "automated"
+          reviewers: "jcdcdev"
+          assignees: "jcdcdev"
