@@ -25,7 +25,8 @@ jobs:
 
           $result = ./update-nuget-package.ps1 -projectFilePath "./jcdcdev.Eco.Core/jcdcdev.Eco.Core.csproj" -packageId $env:packageId
           Write-Output "updated=$($result.Updated)" >> $env:GITHUB_OUTPUT
-          Write-Output "version=$($result.TargetVersion)" >> $env:GITHUB_OUTPUT
+          Write-Output "target-version=$($result.TargetVersion)" >> $env:GITHUB_OUTPUT
+          Write-Output "source-version=$($result.SourceVersion)" >> $env:GITHUB_OUTPUT
 
           Pop-Location
       - name: 🤖 Make Pull Request
@@ -33,10 +34,10 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "feature: Support Eco $env:Version"
-          title: "Update $env:packageId to $env:Version"
-          body: "This PR updates the $env:packageId NuGet package to version $env:Version."
-          branch: "update-$env:packageId-to-$env:Version"
+          commit-message: "feature: Support Eco ${{ steps.sync-eco-package.outputs.target-version }}"
+          title: "Update ${{ env.packageId }} to ${{ steps.sync-eco-package.outputs.target-version }}"
+          body: "This PR updates the ${{ env.packageId }} NuGet package from ${{ steps.sync-eco-package.outputs.source-version }} to ${{ steps.sync-eco-package.outputs.target-version }}."
+          branch: "update-${{ env.packageId }}-from-${{ steps.sync-eco-package.outputs.source-version }}-to-${{ steps.sync-eco-package.outputs.target-version }}"
           labels: "automated"
           reviewers: "jcdcdev"
           assignees: "jcdcdev"
