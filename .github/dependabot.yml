@@ -4,5 +4,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "08:00"
-    target-branch: "dev"
+      time: "23:30"
+    allow:
+      - dependency-type: "all"
