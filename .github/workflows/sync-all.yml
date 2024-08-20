@@ -1,4 +1,4 @@
-name: Sync All
+name: '📚➕ Sync all mod.io README and Images'
 on:
     workflow_dispatch:
 jobs:

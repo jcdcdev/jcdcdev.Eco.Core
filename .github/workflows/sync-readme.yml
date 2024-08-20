@@ -1,4 +1,4 @@
-name: 'Sync mod.io README and Images'
+name: '📚 Sync mod.io README and Images'
 on:
   workflow_dispatch:
   repository_dispatch:

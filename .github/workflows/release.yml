@@ -1,4 +1,4 @@
-name: Release mod
+name: '🚀 Release mod'
 run-name: >
   release ${{github.repository}} #${{ github.run_number }}
   
