@@ -19,20 +19,19 @@ Core functionality used by my Eco mods
 - Start the server
 
 ## Version Table
-
-| Version                                                                 | Game Version | Full Version              |
-|-------------------------------------------------------------------------|--------------|---------------------------|
-| [0.5.2](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.5.2) | 10.2.3       | 0.10.2.3-beta-release-669 |
-| [0.5.1](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.5.1) | 10.2.2       | 0.10.2.2-beta-release-660 |
-| [0.5.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.5.0) | 10.2.1       | 0.10.2.1-beta-release-647 |
-| [0.4.1](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.4.1) | 10.1         | 0.10.1-beta-release-576   |
-| [0.4.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.4.0) | 10.0         | 0.10.0-beta-release-532   |
-| [0.3.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.3.0) | 9.7.10       | 0.9.7.10-beta-release-474 |
-| [0.2.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.2.0) | 9.7.10       | 0.9.7.10-beta-release-474 |
-| [0.1.5](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.5) | 9.7.10       | 0.9.7.10-beta-release-474 |
-| [0.1.4](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.4) | 9.7.10       | 0.9.7.10-beta-release-474 |
-| [0.1.3](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.3) | 9.7.10       | 0.9.7.10-beta-release-474 |
-| [0.1.2](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.2) | 9.7.10       | 0.9.7.10-beta-release-474 |
-| [0.1.1](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.1) | 9.7.10       | 0.9.7.10-beta-release-474 |
-| [0.1.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.0) | 9.7.10       | 0.9.7.10-beta-release-474 |
-
+| Version | Game Version | Full Version |
+|---|---|---|
+| [11.0.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.0.0) | 11.0 | 0.11.0-beta-release-693 |
+| [0.5.2](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.5.2) | 10.2.3 | 0.10.2.3-beta-release-669 |
+| [0.5.1](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.5.1) | 10.2.2 | 0.10.2.2-beta-release-660 |
+| [0.5.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.5.0) | 10.2.1 | 0.10.2.1-beta-release-647 |
+| [0.4.1](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.4.1) | 10.1 | 0.10.1-beta-release-576 |
+| [0.4.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.4.0) | 10.0 | 0.10.0-beta-release-532 |
+| [0.3.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.3.0) | 9.7.10 | 0.9.7.10-beta-release-474 |
+| [0.2.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.2.0) | 9.7.10 | 0.9.7.10-beta-release-474 |
+| [0.1.5](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.5) | 9.7.10 | 0.9.7.10-beta-release-474 |
+| [0.1.4](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.4) | 9.7.10 | 0.9.7.10-beta-release-474 |
+| [0.1.3](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.3) | 9.7.10 | 0.9.7.10-beta-release-474 |
+| [0.1.2](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.2) | 9.7.10 | 0.9.7.10-beta-release-474 |
+| [0.1.1](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.1) | 9.7.10 | 0.9.7.10-beta-release-474 |
+| [0.1.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/0.1.0) | 9.7.10 | 0.9.7.10-beta-release-474 |
