@@ -7,6 +7,9 @@ jobs:
   sync_modio:
     runs-on: ubuntu-latest
     name: 'Sync mod.io README and Images'
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
