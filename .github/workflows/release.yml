@@ -16,7 +16,7 @@ jobs:
     outputs:
       semVer: ${{ steps.gitversion.outputs.semVer }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Install GitVersion
@@ -43,7 +43,7 @@ jobs:
       assetName: ${{ env.ASSET_NAME }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
@@ -74,7 +74,7 @@ jobs:
       PROJECT_PATH: ./src/jcdcdev.Eco.Core/jcdcdev.Eco.Core.csproj
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
@@ -96,25 +96,19 @@ jobs:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
       ASSET_NAME: ${{ needs.build.outputs.assetName }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Download package
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.ASSET_NAME }}
-      - run: echo "previous_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> $GITHUB_ENV
-      - name: Generate changelog
-        id: changelog
-        uses: jaywcjlove/changelog-generator@main
+      - name: Create Release
+        id: create-release
+        uses: jcdcdev/jcdcdev.GitHub.CreateRelease@main
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          filter-author: (jcdcdev|dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
-          filter: '(\+semver:\s?(breaking|major|feature|minor|fix|patch)|\+changelog-ignore:.*|Merge.*)'
-          custom-emoji: 'feature🌟'
-      - name: Get the changelog
-        run: echo "${{ steps.changelog.outputs.changelog }}"
+          artifacts: ${{ env.ASSET_NAME }}.zip
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version: ${{ env.SEMVER }}
+      - name: Fail Early
+        run: exit 1
       - uses: nickelc/upload-to-modio@v2.1.0
         with:
           token: ${{ secrets.MODIO_TOKEN }}
@@ -123,19 +117,4 @@ jobs:
           version: ${{ env.SEMVER }}
           path: ${{ env.ASSET_NAME }}.zip
           active: true
-          changelog: |
-            Version ${{ env.SEMVER }}
-
-            ${{ steps.changelog.outputs.changelog }}
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: ${{ env.ASSET_NAME }}.zip
-          allowUpdates: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          name: ${{ env.SEMVER }}
-          tag: ${{ env.SEMVER }}
-          body: |
-            Compare https://github.com/${{ github.repository }}/compare/${{ env.previous_tag }}...${{env.SEMVER}}
-
-            ${{ steps.changelog.outputs.changelog }}
+          changelog: ${{ steps.create-release.outputs.changelog }}
