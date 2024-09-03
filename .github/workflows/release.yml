@@ -97,14 +97,14 @@ jobs:
       ASSET_NAME: ${{ needs.build.outputs.assetName }}
     steps:
       - name: Download package
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.ASSET_NAME }}
       - name: Create Release
         id: create-release
         uses: jcdcdev/jcdcdev.GitHub.CreateRelease@main
         with:
-          artifacts: ${{ env.ASSET_NAME }}.zip
+          artifact-name: ${{ env.ASSET_NAME }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.SEMVER }}
       - name: Fail Early
