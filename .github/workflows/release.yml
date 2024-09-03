@@ -81,8 +81,8 @@ jobs:
           dotnet-version: 7.0.x
       - name: Pack
         run: dotnet pack ${{ env.PROJECT_PATH }} -o . --configuration Release -p:Version=${{ env.SEMVER }}
-      - name: Push to NuGet
-        run: dotnet nuget push **\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      # - name: Push to NuGet
+      #   run: dotnet nuget push **\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
   create-release:
     name: create release ${{ needs.determine-version.outputs.semVer }}
     needs:
