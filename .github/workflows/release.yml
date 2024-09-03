@@ -81,8 +81,8 @@ jobs:
           dotnet-version: 7.0.x
       - name: Pack
         run: dotnet pack ${{ env.PROJECT_PATH }} -o . --configuration Release -p:Version=${{ env.SEMVER }}
-      # - name: Push to NuGet
-      #   run: dotnet nuget push **\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      - name: Push to NuGet
+        run: dotnet nuget push **\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
   create-release:
     name: create release ${{ needs.determine-version.outputs.semVer }}
     needs:
@@ -107,8 +107,6 @@ jobs:
           artifact-name: ${{ env.ASSET_NAME }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.SEMVER }}
-      - name: Fail Early
-        run: exit 1
       - uses: nickelc/upload-to-modio@v2.1.0
         with:
           token: ${{ secrets.MODIO_TOKEN }}
