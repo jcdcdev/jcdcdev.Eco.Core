@@ -103,6 +103,7 @@ jobs:
           artifact-name: ${{ env.ASSET_NAME }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ env.SEMVER }}
+          rich-format: false
       - name: Download package
         uses: actions/download-artifact@v4
         with:

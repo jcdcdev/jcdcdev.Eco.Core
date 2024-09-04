@@ -15,4 +15,5 @@ jobs:
       contents: write
     with:
       start-version: ${{ inputs.start-version}}
-      end-version: ${{ inputs.end-version}}
+      end-version: ${{ inputs.end-version}} 
+      rich-format: false 
