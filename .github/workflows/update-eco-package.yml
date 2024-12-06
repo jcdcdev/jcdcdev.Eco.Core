@@ -12,6 +12,7 @@ jobs:
       pull-requests: write
     env:
       packageId: 'Eco.ReferenceAssemblies'
+      projectFilePath: './src/jcdcdev.Eco.Core/jcdcdev.Eco.Core.csproj'
     steps:
       - name: 📋 Checkout code
         uses: actions/checkout@v4
@@ -23,7 +24,7 @@ jobs:
         run: |
           Push-Location -Path ./src
 
-          $result = ./update-nuget-package.ps1 -projectFilePath "./jcdcdev.Eco.Core/jcdcdev.Eco.Core.csproj" -packageId $env:packageId
+          $result = ./update-nuget-package.ps1 -projectFilePath "${{ env.projectFilePath }}" -packageId "${{ env.packageId }}"
           Write-Output "updated=$($result.Updated)" >> $env:GITHUB_OUTPUT
           Write-Output "target-version=$($result.TargetVersion)" >> $env:GITHUB_OUTPUT
           Write-Output "source-version=$($result.SourceVersion)" >> $env:GITHUB_OUTPUT
