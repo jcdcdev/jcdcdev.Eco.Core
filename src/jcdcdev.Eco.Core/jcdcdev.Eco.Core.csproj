@@ -31,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Eco.ReferenceAssemblies" Version="0.11.1.5-beta-release-811"                />
+      <PackageReference Include="Eco.ReferenceAssemblies" Version="0.11.1.6-beta-release-826"                 />
     </ItemGroup>
 
 </Project>
