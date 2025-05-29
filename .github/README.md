@@ -29,6 +29,7 @@ Core functionality used by my Eco mods
 | [11.1.4](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.4) | 11.1.4 | 0.11.1.4-beta-release-802 |
 | [11.1.3](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.3) | 11.1.3 | 0.11.1.3-beta-release-795 |
 | [11.1.2](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.2) | 11.1.2 | 0.11.1.2-beta-release-767 |
+| [11.1.11](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.11) | 11.1.11 | 0.11.1.11-beta-release-866 |
 | [11.1.10](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.10) | 11.1.10 | 0.11.1.10-beta-release-847 |
 | [11.1.1](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.1) | 11.1.1 | 0.11.1.1-beta-release-758 |
 | [11.1.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.0) | 11.1 | 0.11.1-beta-release-750 |
