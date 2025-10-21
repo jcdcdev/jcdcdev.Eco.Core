@@ -21,6 +21,7 @@ Core functionality used by my Eco mods
 ## Version Table
 | Version | Game Version | Full Version |
 |---|---|---|
+| [12.0.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/12.0.0) | 12.0 | 0.12.0-beta-release-905 |
 | [11.1.9](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.9) | 11.1.9 | 0.11.1.9-beta-release-842 |
 | [11.1.8](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.8) | 11.1.8 | 0.11.1.8-beta-release-831 |
 | [11.1.7](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.7) | 11.1.7 | 0.11.1.7-beta-release-821 |
@@ -29,6 +30,7 @@ Core functionality used by my Eco mods
 | [11.1.4](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.4) | 11.1.4 | 0.11.1.4-beta-release-802 |
 | [11.1.3](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.3) | 11.1.3 | 0.11.1.3-beta-release-795 |
 | [11.1.2](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.2) | 11.1.2 | 0.11.1.2-beta-release-767 |
+| [11.1.13](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.13) | 11.1.13 | 0.11.1.13-beta-release-887 |
 | [11.1.12](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.12) | 11.1.12 | 0.11.1.12-beta-release-881 |
 | [11.1.11](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.11) | 11.1.11 | 0.11.1.11-beta-release-866 |
 | [11.1.10](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/11.1.10) | 11.1.10 | 0.11.1.10-beta-release-847 |
