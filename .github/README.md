@@ -1,8 +1,6 @@
 ## jcdcdev.Eco.Core
 
-[![NuGet Downloads](https://badgen.net/https/nuget-downloads-oncgeo0zefvy.runkit.sh/jcdcdev.eco.core?color=3a93b4&label=NuGet%20Downloads)](https://www.nuget.org/packages/jcdcdev.Eco.Core/)
-
-Core functionality used by my Eco mods
+Core functionality used by my Eco mods. 
 
 | Name                                                         | Description                                                       |
 |--------------------------------------------------------------|-------------------------------------------------------------------|
