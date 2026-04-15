@@ -21,23 +21,23 @@ jobs:
       ARTIFACT_OUTPUT: ./build-assets
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
       - name: Build project
         run: dotnet build ${{ env.PROJECT_PATH }} -o ${{ env.BUILD_OUTPUT }} --configuration Release
       - name: Copy Assets
         run: |
           mkdir --parents "${{ env.MOD_OUTPUT }}"
           cp "${{ env.BUILD_OUTPUT }}/${{ env.PROJECT_NAME }}.dll" "${{ env.MOD_OUTPUT }}"      
-      - uses: vimtor/action-zip@v1
+      - uses: vimtor/action-zip@v1.3
         with:
           files: ${{ env.ARTIFACT_OUTPUT }}
           dest: ${{ env.ASSET_NAME }}.zip
       - name: Upload package
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.ASSET_NAME }}
           path: ${{ env.ASSET_NAME }}.zip

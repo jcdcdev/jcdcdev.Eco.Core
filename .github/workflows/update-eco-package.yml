@@ -15,7 +15,7 @@ jobs:
       projectFilePath: './jcdcdev.Eco.Core/jcdcdev.Eco.Core.csproj'
     steps:
       - name: 📋 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: 🚀 Execute script
@@ -32,7 +32,7 @@ jobs:
           Pop-Location
       - name: 🤖 Make Pull Request
         if: steps.sync-eco-package.outputs.updated == 'true'
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "feature: Support Eco ${{ steps.sync-eco-package.outputs.target-version }}"
