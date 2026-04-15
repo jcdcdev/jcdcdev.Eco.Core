@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Product>jcdcdev.Eco.Core</Product>
@@ -31,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Eco.ReferenceAssemblies" Version="0.12.0.7-beta-release-979"                                />
+      <PackageReference Include="Eco.ReferenceAssemblies" Version="0.13.0-beta-release-998"                                 />
     </ItemGroup>
 
 </Project>
