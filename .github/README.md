@@ -19,6 +19,7 @@ Core functionality used by my Eco mods.
 ## Version Table
 | Version | Game Version | Full Version |
 |---|---|---|
+| [13.0.3](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/13.0.3) | 13.0.3 | 0.13.0.3-beta-release-1015 |
 | [13.0.2](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/13.0.2) | 13.0.2 | 0.13.0.2-beta-release-1006 |
 | [13.0.1](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/13.0.1) | 13.0.1 | 0.13.0.1-beta-release-1005 |
 | [13.0.0](https://github.com/jcdcdev/jcdcdev.Eco.Core/releases/tag/13.0.0) | 13.0 | 0.13.0-beta-release-998 |
